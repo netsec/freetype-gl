@@ -59,8 +59,11 @@ IF( WIN32 OR WIN64 )
          ${CMAKE_CURRENT_SOURCE_DIR}/windows/freetype/freetype )
     SET( FREETYPE_LIBRARY
          ${CMAKE_CURRENT_SOURCE_DIR}/windows/freetype/freetype.lib )
-    SET( VS789FIX_INCLUDE_DIR
-         ${CMAKE_CURRENT_SOURCE_DIR}/windows/include )
+
+    IF(NOT USING_MINGW_COMPILERS)
+        SET( VS789FIX_INCLUDE_DIR
+             ${CMAKE_CURRENT_SOURCE_DIR}/windows/include )
+    ENDIF(NOT USING_MINGW_COMPILERS)
 ELSE( WIN32 OR WIN64 )
     IF ( freetype-gl_LIBS_SUPPLIED )
         FIND_PACKAGE( GLUT )
