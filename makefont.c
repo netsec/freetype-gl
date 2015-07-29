@@ -41,7 +41,9 @@
 #include <string.h>
 #include <wchar.h>
 
-#if defined(__APPLE__)
+#ifdef FREETYPE_GLUT_HEADER
+    #include FREETYPE_GLUT_HEADER
+#elif defined(__APPLE__)
     #include <Glut/glut.h>
 #elif defined(_WIN32) || defined(_WIN64)
     #include <GLUT/glut.h>
