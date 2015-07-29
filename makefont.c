@@ -41,8 +41,8 @@
 #include <string.h>
 #include <wchar.h>
 
-#ifdef FREETYPE_GLUT_HEADER
-    #include FREETYPE_GLUT_HEADER
+#ifdef FREETYPE_GL_GLUT_HEADER
+    #include FREETYPE_GL_GLUT_HEADER
 #elif defined(__APPLE__)
     #include <Glut/glut.h>
 #elif defined(_WIN32) || defined(_WIN64)
