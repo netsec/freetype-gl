@@ -124,23 +124,25 @@ ADD_LIBRARY( freetype-gl STATIC ${FREETYPE_GL_SRC} )
 
 LINK_DIRECTORIES(${PROJECT_SOURCE_DIR})
 
-ADD_EXECUTABLE( makefont makefont.c )
+IF(FREETYPE_GL_BUILD_MAKEFONT)
+    ADD_EXECUTABLE( makefont makefont.c )
 
-IF(NOT APPLE)
-    TARGET_LINK_LIBRARIES( makefont ${GLEW_LIBRARY} )
-ENDIF()
+    IF(NOT APPLE)
+        TARGET_LINK_LIBRARIES( makefont ${GLEW_LIBRARY} )
+    ENDIF()
 
-TARGET_LINK_LIBRARIES( makefont
-                       freetype-gl
-                       ${OPENGL_LIBRARY}
-                       ${GLUT_LIBRARY}
-                       ${FREETYPE_LIBRARY}
-                       ${MATH_LIBRARY})
+    TARGET_LINK_LIBRARIES( makefont
+                           freetype-gl
+                           ${OPENGL_LIBRARY}
+                           ${GLUT_LIBRARY}
+                           ${FREETYPE_LIBRARY}
+                           ${MATH_LIBRARY})
 
-if(MSVC)
-    # Compile makefont as C++
-    set_source_files_properties( makefont.c PROPERTIES LANGUAGE CXX )
-endif()
+    if(MSVC)
+        # Compile makefont as C++
+        set_source_files_properties( makefont.c PROPERTIES LANGUAGE CXX )
+    endif()
+ENDIF(FREETYPE_GL_BUILD_MAKEFONT)
 
 IF (freetype-gl_BUILD_APIDOC)
     ADD_SUBDIRECTORY(doc)
